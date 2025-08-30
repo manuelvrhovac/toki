@@ -1,19 +1,26 @@
 // swift-tools-version: 5.9
-// The swift-tools-version declares the minimum version of Swift required to build this package.
-
 import PackageDescription
 
 let package = Package(
-    name: "Colgen",
+    name: "Toki", // or "Toki"
     platforms: [
-        .macOS(.v12)
+        .macOS(.v13) // match your code, since you’re already using macOS 13 APIs
+    ],
+    products: [
+        .executable(
+            name: "toki", // the CLI name (binary in .build/release)
+            targets: ["Toki"]
+        )
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-argument-parser", from: "0.0.4")
+        .package(
+            url: "https://github.com/apple/swift-argument-parser",
+            from: "1.2.0" // much newer than 0.0.4
+        )
     ],
     targets: [
         .executableTarget(
-            name: "Colgen",
+            name: "Toki",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser")
             ]
