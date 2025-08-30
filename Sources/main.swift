@@ -4,9 +4,6 @@ import ArgumentParser
 import Foundation
 
 struct Toki: ParsableCommand {
-    @Flag(name: .shortAndLong, help: "Print the current version")
-    var versionFlag = false
-
     @Flag(name: .customShort("l"), help: "List semantic and primitive colors")
     var list
 
@@ -14,10 +11,6 @@ struct Toki: ParsableCommand {
     var command: String?
 
     func run() throws {
-        if versionFlag {
-            print("Version: \(Self.version)")
-            return
-        }
         Task {
             try await runAsync()
             Self.exit()
@@ -53,6 +46,8 @@ struct Toki: ParsableCommand {
             print("Error: No valid 'COLGEN_TOKEN' found in your zshrc or bash config file!")
             return
         }
+
+        print("Toki is only a stub for now! Version: '\(Self.version)'")
 
         // TODO: WIP
     }
